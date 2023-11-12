@@ -22,3 +22,19 @@ class Account(AbstractUser):
     )
 
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        if self.username:
+            return self.username
+        return self.get_username()
+
+
+class User(models.Model):
+    account = models.OneToOneField(Account, on_delete=models.CASCADE)
+
+
+
+
+    def __str__(self):
+        return self.account.__str__()
+
